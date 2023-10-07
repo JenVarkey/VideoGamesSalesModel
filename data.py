@@ -20,3 +20,28 @@ class VGsales:
             data.append(dict(zip(header, row)))
         cur.close()
         return data
+
+    def get_publishers(self):
+        sql = u.file2string("db/sqls/get_unique_publishers.sql")
+        return self.get_data(sql)
+
+    def get_genres(self):
+        sql = u.file2string("db/sqls/get_unique_genres.sql")
+        return self.get_data(sql)
+
+    def get_platforms(self):
+        sql = u.file2string("db/sqls/get_unique_platforms.sql")
+        return self.get_data(sql)
+
+    def get_sales_summary(self):
+        sql = u.file2string("db/sqls/get_sales_by_region.sql")
+        return self.get_data(sql)
+
+    def get_sales_by_year(self):
+        sql = u.file2string("db/sqls/get_sales_by_year.sql")
+        return self.get_data(sql)
+
+    def get_sales_deails(self, publisher, genre, platform):
+        params = [publisher, genre, platform]
+        sql = u.file2string("db/sqls/get_details.sql")
+        return self.get_data(sql, params=params)
