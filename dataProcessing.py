@@ -60,7 +60,7 @@ def clean_table():
 def main():
     download_dataset()
     create_vgsales_table()
-    print(clean_table())
+    clean_table()
 
 
 if __name__ == "__main__":
