@@ -1,19 +1,12 @@
-from kaggle.api.kaggle_api_extended import KaggleApi
-import psycopg2
-
-def readFile(fileName):
-    with open(fileName, 'r') as file:
-        return file.read()
-
-def get_conn():
-    c = psycopg2.connect(host="localhost", database="linear_regression", user="postgres", password="Bluejay9!")
-    return c
-
-def downloadDataset():
-    api = KaggleApi()
-    api.authenticate()
-    api.dataset_download_files('gregorut/videogamesales', unzip=True)
+def file2string(file_name):
+    with open(file_name, 'r') as f:
+        return f.read()
 
 
-def readSQLfiles(conn, sqlstring):
-    ...
+def runsqls(conn, sqlstring):
+    cur = conn.cursor()
+    sqls = sqlstring.split(';')
+    for sql in sqls:
+        cur.execute(sql)
+    conn.commit()
+    cur.close()
