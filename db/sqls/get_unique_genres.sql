@@ -1,0 +1,1 @@
+select distinct s.genre from vgsales s order by s.genre

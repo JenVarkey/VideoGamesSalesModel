@@ -1,0 +1,1 @@
+select distinct s.platform from vgsales s order by s.platform

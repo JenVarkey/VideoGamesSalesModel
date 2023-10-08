@@ -1,0 +1,1 @@
+select distinct s.publisher from vgsales s order by s.publisher
