@@ -4,7 +4,7 @@ import utils as u
 class VGsales:
 
     def __init__(self) -> None:
-        self.conn = psycopg2.connect(host="localhost", database="linear_regression", user="postgres", password="Bluejay9!")
+        self.conn = psycopg2.connect(host="localhost", database="linear_regression", user="postgres", password="***")
 
     def get_data(self, sql, params=None):
         data = []
