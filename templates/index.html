@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block dropdowns %}
+<div class="d-flex flex-row">
+    <form class="form-inline" method="GET" action="/">
+        <div class="form-group mb-2">
+
+            <!-- Publisher Drop down -->
+            <label for="publisher">Publishers:</label>
+            <select name="publisher" id="publisher" >
+                {% for publisher in data.publishers %}
+                <option value="{{ publisher.publisher }}">{{ publisher.publisher }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- Genres Drop down -->
+            <label for="genres">Genres:</label>
+            <select name="genre" id="genre" >
+                {% for genre in data.genres %}
+                <option value="{{ genre.genre }}">{{ genre.genre }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- Genres Drop down -->
+            <label for="platforms">Platform:</label>
+            <select name="platform" id="platform">
+                {% for platform in data.platforms %}
+                <option value="{{ platform.platform }}">{{ platform.platform }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary" onclick="this.form.submit()">Search</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block linechart %}
+<img src='data:image/png;base64,{{data.sales_trend}}' />
+{% endblock %}
+
+{% block piechart %}
+<img src='data:image/png;base64,{{data.sales_summary}}' />
+{% endblock %}
+
+{% block detail_table %}
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Name</th>
+            <th scope="col">Year</th>
+            <th scope="col">Global Sales</th>
+            <th scope="col">Platform</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data.details %}
+        <tr>
+            <th scope="row">{{row.rank}}</th>
+            <td>{{row.name}}</td>
+            <td>{{row.year}}</td>
+            <td>{{row.global_sales}}</td>
+            <td>{{row.platform}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
