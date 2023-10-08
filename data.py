@@ -38,10 +38,10 @@ class VGsales:
         return self.get_data(sql)
 
     def get_sales_by_year(self):
-        sql = u.file2string("db/sqls/get_sales_by_year.sql")
+        sql = u.file2string("db/sqls/get_sales_by_year.sql.sql")
         return self.get_data(sql)
 
-    def get_sales_deails(self, publisher, genre, platform):
+    def get_sales_details(self, publisher, genre, platform):
         params = [publisher, genre, platform]
         sql = u.file2string("db/sqls/get_details.sql")
         return self.get_data(sql, params=params)
