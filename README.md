@@ -8,14 +8,13 @@ Make sure to make a python gitignore file and in the gitignore file
 
 make a directory called chart_web_app
 
-get the SSH key from the code dropdown and run 
-
-```
-git clone <SSH Key>
-```
+get the SSH key from the code dropdown and run
+`
+git clone <insert SSH Key>
+`.
 This will make a folder which copies over the gitignore and readme files to your computer.
 
-In the 
+In the .gitignore file, uncomment the last line.
 
 Download the requirements.txt file and make sure it's in the same folder as the gitignore and readme files.
 
@@ -74,4 +73,35 @@ def runsqls(conn, sqlstring):
 
 create another file called dataProcessing.py
 
-This file will 
+This file will process and clean the dataset which contains some values which make translating it into an SQL table difficult.
+
+Start the file with:
+```python
+from kaggle.api.kaggle_api_extended import KaggleApi
+import psycopg2
+import utils as u
+```
+
+create a function called download_dataset() which will use the kaggle API to download the dataset.
+
+```python
+def download_dataset():
+    api = KaggleApi()
+    api.authenticate()
+    api.dataset_download_files('gregorut/videogamesales', unzip=True)
+```
+if you wish to use a different dataset, use `user/dataset_name`
+
+Then create a function that will return a connection object:
+
+```python
+def get_conn():
+    c = psycopg2.connect(host="localhost", database="linear_regression", user="postgres", password="***")
+    return c
+
+```
+
+Then create a folder called db, then create two folders in db called sqls and tables.
+
+in tables, create an sql file and configure it to postgreSQL, in the file:
+
